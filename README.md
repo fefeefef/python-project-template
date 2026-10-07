@@ -29,6 +29,8 @@ After initializing Git, enable the local hooks:
     uv run --locked pre-commit install
     uv run --locked pre-commit run --all-files
 
+The Ruff lint hook applies only safe fixes for the rules listed in `tool.ruff.lint.fixable`. Other selected rule violations fail the hook. If a hook modifies files, review `git diff`, stage the changes, and retry the commit. Ruff formatting remains a check; run `uv run --locked ruff format .` to apply formatting when needed.
+
 The GitHub workflow checks code quality, file hygiene, tests, and package building on pushes and pull requests. It does not deploy or publish anything. Pre-Commit checks common file hygiene and private-key patterns locally and in CI; these checks do not replace reviewing changes for sensitive material.
 
 Keep credentials, customer data, and generated artifacts out of Git. The ignore rules prevent common accidental additions but cannot identify every confidential value; review changes before committing. If the project needs approved, synthetic test fixtures, narrow the relevant .gitignore rules explicitly so those fixtures can be tracked without admitting customer data.

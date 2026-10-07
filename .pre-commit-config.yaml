@@ -13,6 +13,8 @@ repos:
       - id: ruff-check
         name: Ruff lint
         entry: uv run --locked ruff check --force-exclude
+        # Korrigiert nur sichere Treffer der fixable-Liste; andere Fehler blockieren.
+        args: [--fix]
         language: system
         types_or: [python, pyi, jupyter]
       - id: ruff-format
