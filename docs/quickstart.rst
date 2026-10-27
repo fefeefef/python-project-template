@@ -8,12 +8,5 @@ checkout and must be updated when the real public API replaces it.
 
    from project_name import greet
 
-   print(greet("NXAI"))
-   # Hello, NXAI!
-
-The default is also available:
-
-.. code-block:: python
-
    print(greet())
-   # Hello, world!
+   # hello
