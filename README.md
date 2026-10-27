@@ -1,44 +1,73 @@
-# TODO: Project name
+<h1 align="center">TODO: Python project</h1>
 
-TODO: Describe what this project does.
+<p align="center">
+  <a href="docs/index.rst">Documentation</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a> ·
+  <a href="SECURITY.md">Security</a> ·
+  <a href="#license">License</a>
+</p>
 
-## Use this template
+<!-- Optional project links and badges: replace every placeholder, then enable only
+     links that exist for the adapted project. See TEMPLATE_SETUP.md.
+[![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b)](https://arxiv.org/abs/ARXIV_ID)
+[![Hugging Face](https://img.shields.io/badge/Hugging_Face-Model-yellow)](https://huggingface.co/OWNER/MODEL)
+[![PyPI](https://img.shields.io/pypi/v/DISTRIBUTION_NAME)](https://pypi.org/project/DISTRIBUTION_NAME/)
+[![Downloads](https://img.shields.io/pypi/dm/DISTRIBUTION_NAME)](https://pypi.org/project/DISTRIBUTION_NAME/)
+[![Docs](https://img.shields.io/badge/docs-online-blue)](https://OWNER.github.io/REPOSITORY/)
+[![License](https://img.shields.io/badge/license-LICENSE_ID-green)](LICENSE)
+[![testing](https://github.com/OWNER/REPOSITORY/actions/workflows/testing.yml/badge.svg)](https://github.com/OWNER/REPOSITORY/actions/workflows/testing.yml)
+[![Coverage](https://codecov.io/gh/OWNER/REPOSITORY/graph/badge.svg)](https://codecov.io/gh/OWNER/REPOSITORY)
+-->
 
-Copy this directory as the starting point for a new repository. Complete the TODOs below, then run uv lock to refresh uv.lock after changing project metadata or dependencies. Python 3.11, uv with a committed lockfile, and the Ruff rules are starting choices for this template; align the Python requirement, Ruff target, CI version, and dependency workflow with the actual project. Follow existing organization rules when they prescribe different settings.
+TODO: Describe the actual project, its intended users, and the problem it solves.
 
-## Before first use
+A minimal Python package with a runnable example and a reproducible development environment.
 
-- [ ] TODO: Replace the project name in this README and pyproject.toml.
-- [ ] TODO: Rename src/project_name and update the import in tests/test_package.py.
-- [ ] TODO: Replace the project description.
-- [ ] TODO: Choose a license and add its approved license file or metadata.
-- [ ] TODO: Name the responsible team or maintainers.
-- [ ] Check current organization rules before adopting this optional template.
+> This is an unconfigured template. Start with [Template setup](TEMPLATE_SETUP.md)
+> when creating a project. The package has not been published by this template.
 
-## Local setup
+## Features
 
-Install uv, then run:
+- A small, importable Python package with a working quickstart.
+- A standard src layout for application or library code.
+- Tests, file hooks, and a GitHub Actions workflow named `testing`.
 
-    uv sync --locked --group dev
-    uv run --locked pytest
-    uv run --locked ruff check .
-    uv run --locked ruff format --check .
+Replace these template features with the actual capabilities of your project.
 
-After initializing Git, enable the local hooks:
+## Installation
 
-    uv run --locked pre-commit install
-    uv run --locked pre-commit run --all-files
+Python 3.11 or newer is required. After adapting and publishing the project,
+replace `YOUR_PACKAGE_NAME` with its actual distribution name:
 
-The Pre-Commit hook set follows the supplied TiRex-2 configuration: file hygiene and structure checks, a 1,000 KB limit for newly added files, Python syntax modernization with pyupgrade, Ruff linting and automatic formatting, and Conventional Commit messages. Hook versions are pinned in `.pre-commit-config.yaml`. The template's Ruff rule selection and `fixable` allowlist remain in `pyproject.toml`; only available safe Ruff lint fixes from that allowlist are applied. pyupgrade, the formatter, and file hygiene hooks perform their own corrections independently of Ruff's `fixable` setting. If a hook modifies files, review `git diff`, stage the changes, and retry the commit.
+```bash
+pip install YOUR_PACKAGE_NAME
+```
 
-The install command enables both `pre-commit` and `commit-msg` stages. Commit messages require a type and scope, for example `fix(notebooks): correct data loading`. Allowed types are `chore`, `ci`, `docs`, `feat`, `fix`, and `test`. `pre-commit run --all-files` checks files; the message hook runs when committing. To check a message manually:
+To try this checkout before publication:
 
-    uv run --locked pre-commit run --hook-stage commit-msg --commit-msg-filename /path/to/message.txt
+```bash
+python -m pip install .
+```
 
-CI runs the file hooks; it does not validate commit messages. Automatic corrections in CI fail the check so the corrected files must be committed locally.
+## Quickstart
 
-The GitHub workflow checks code quality, file hygiene, tests, and package building on pushes and pull requests. It does not deploy or publish anything. Pre-Commit checks common file hygiene and private-key patterns locally and in CI; these checks do not replace reviewing changes for sensitive material.
+The starter package includes a small example. Replace it with your public API
+when adapting the template.
 
-Keep credentials, customer data, and generated artifacts out of Git. The ignore rules prevent common accidental additions but cannot identify every confidential value; review changes before committing. If the project needs approved, synthetic test fixtures, narrow the relevant .gitignore rules explicitly so those fixtures can be tracked without admitting customer data.
+```python
+from project_name import greet
 
-See ASSUMPTIONS.md for decisions and limits inherited from the template proposal.
+print(greet())
+# hello
+```
+
+## Documentation and contributions
+
+[Documentation](docs/index.rst) covers installation, the quickstart, and the example API.
+[Contributing](CONTRIBUTING.md) contains the development and test commands.
+Use the repository's issue forms for bugs and feature requests; report security
+vulnerabilities privately as described in [Security](SECURITY.md).
+
+## License
+
+No license has been selected. Add the project license to [LICENSE](LICENSE).

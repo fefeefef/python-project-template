@@ -1,1 +1,6 @@
-"""TODO: Replace project_name with the new package name."""
+"""Minimal public API; replace this example when adapting the template."""
+
+
+def greet() -> str:
+    """Return a simple greeting."""
+    return "hello"

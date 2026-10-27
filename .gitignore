@@ -27,3 +27,9 @@ datasets/
 customer_data/
 outputs/
 artifacts/
+.coverage.*
+coverage.xml
+coverage.json
+
+# Generated documentation
+docs/_build/

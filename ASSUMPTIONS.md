@@ -1,15 +1,51 @@
-# Template assumptions
+# Template configuration
 
-- This is an optional starting point for a new repository. Existing organization rules take precedence.
-- Python 3.11 is a starting value, not an inferred organization minimum. Change requires-python, Ruff target, and CI together when the project needs another version.
-- uv and a committed uv.lock are starting choices for reproducible development and CI; select a different dependency workflow when project requirements call for it.
-- pyproject.toml holds project metadata. setuptools is used for the minimal src-layout package.
-- Ruff and pytest are template defaults, not an established organization-wide ruleset. The lint selection explicitly lists all current stable Pyflakes (F) rules and selected import, whitespace, bug prevention, pytest, suppression, Ruff-specific, and type modernization rules. The Python template additionally checks E501 with a 120-character line limit. Each rule is documented in pyproject.toml; review the selection when upgrading Ruff.
-- The pinned Ruff lint hook uses --fix, but automatic corrections are limited to safe fixes for I001, W291, W292, W293, F401, RUF100, UP006, and UP007. Other selected violations fail the hook. Unsafe fixes are not enabled. Review and stage hook changes before retrying a commit.
-- The Pre-Commit hook set and pinned versions follow the supplied TiRex-2 configuration, while the template-specific Ruff rules and safe-fix allowlist are retained. Ruff formatting is automatically applied. pyupgrade targets Python 3.11 and may modernize syntax beyond the selected Ruff rules; its corrections are independent of Ruff's fixable allowlist.
-- File hooks also check added file sizes (1,000 KB), filename case conflicts, executable/shebang consistency, JSON, merge conflicts, symlinks, TOML, YAML, debug statements, private-key patterns, line endings, test filenames, and whitespace. The TiRex-2 helper exclusion is retained; disabled reference hooks remain disabled.
-- Installing Pre-Commit enables both pre-commit and commit-msg stages. Conventional Commit messages require a scope and one of chore, ci, docs, feat, fix, or test. CI runs the file hooks without checking commit messages; corrections made during CI fail the check rather than being committed automatically.
-- GitHub Actions validates pushes and pull requests, including a package build. No deployment, publication, or release automation is included.
-- Project name, description, responsible team, and license are unresolved TODOs. No license is assumed.
-- Ignore patterns are only a guardrail; they cannot prove that a commit contains no secrets or customer data.
-- CLA policy is separate and is not activated by this template.
+## Python and dependencies
+
+Python 3.11 is used in CI and by the code-quality tools. `pyproject.toml` contains
+package metadata and dependency groups; `uv.lock` records resolved dependency
+versions. Keep the Python requirement, Ruff target, and CI version consistent.
+
+Setuptools builds the `src` package and is pinned in `[build-system]`.
+Pre-Commit installs versioned hooks in separate environments and resolves their
+transitive dependencies independently of `uv.lock`.
+
+## Code quality
+
+Ruff checks Python source and a maximum line length of 120 characters.
+The formatter also uses a 120-character target.
+The selected lint rules are listed and described in `pyproject.toml`.
+
+The Ruff hook applies safe corrections for I001, W291, W292, W293, F401, RUF100,
+UP006, and UP007. Other selected violations fail the check. Ruff formatting,
+pyupgrade, and file hygiene hooks apply their own corrections. Review and stage
+changes made by hooks before retrying a commit.
+
+File hooks check added files over 1,000 KB, filename case conflicts, executable
+and shebang consistency, JSON, TOML, YAML, merge conflicts, symlinks, debug
+statements, private-key patterns, line endings, test filenames, and whitespace.
+
+Pre-Commit installs file and commit-message hooks. Commit messages require a scope
+and one of `chore`, `ci`, `docs`, `feat`, `fix`, or `test`. CI runs file hooks;
+it does not validate commit messages or commit automatic corrections.
+
+## Automation and documentation
+
+The `testing` workflow runs hooks, tests, package builds, distribution checks, and
+the Sphinx documentation build on pushes and pull requests. GitHub Actions use
+commit-pinned versions, and CI installs uv 0.13.5.
+
+Line and branch coverage includes the package and its own scripts. Reports are
+informational and have no percentage gate. Codecov uploads run when the repository
+variable `CODECOV_ENABLED` is `true`; otherwise reports remain local and in GitHub
+Actions artifacts.
+
+Sphinx builds documentation, including API references from docstrings. MyST
+supports Markdown pages. Documentation deployment and package publishing are
+disabled. The publishing example is outside the active workflows directory.
+
+Dependabot is configured for weekly `uv` and GitHub Actions update pull requests.
+See `TEMPLATE_SETUP.md` for project identity, license, and security setup.
+
+Git ignore patterns cover common credential, data, and generated artifact paths.
+Review changes for sensitive content before committing.

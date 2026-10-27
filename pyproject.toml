@@ -10,13 +10,21 @@ dependencies = []
 
 [dependency-groups]
 dev = [
+    "coverage>=7.8,<8",
     "pre-commit>=4,<5",
     "pytest>=8,<9",
+    "pytest-cov>=6,<8",
+    "twine>=6,<7",
     "ruff>=0.12,<1",
 ]
 
+docs = [
+    "sphinx>=8,<9",
+    "myst-parser>=4,<5",
+]
+
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools==84.2.1"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
@@ -24,6 +32,15 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.coverage.run]
+branch = true
+source_dirs = ["src/project_name", "scripts"]
+relative_files = true
+
+[tool.coverage.report]
+show_missing = true
 
 [tool.ruff]
 target-version = "py311"
