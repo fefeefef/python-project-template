@@ -1,7 +1,11 @@
-"""Verify that the package can be imported after installation."""
+"""Exercise the public API used by the README quickstart."""
 
-from importlib import import_module
+from project_name import greet
 
 
-def test_package_is_importable() -> None:
-    assert import_module("project_name").__name__ == "project_name"
+def test_default_greeting() -> None:
+    assert greet() == "Hello, world!"
+
+
+def test_named_greeting() -> None:
+    assert greet("NXAI") == "Hello, NXAI!"
